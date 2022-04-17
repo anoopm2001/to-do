@@ -8,10 +8,20 @@ import H5 from "@material-tailwind/react/Heading5";
 import CardBody from "@material-tailwind/react/CardBody";
 import Input from "@material-tailwind/react/Input";
 import Button from "@material-tailwind/react/Button";
+import { useSession, signIn, signOut } from "next-auth/react"
+import { useRouter } from 'next/router'
 const Home: NextPage = () => {
+  const { data: session } = useSession()
+  const router = useRouter()
+  
+  console.log(session);
+  
+  signIn('google', { callbackUrl: '/list' })
   return (
+    
+    
     <div className="">
-      <Head>
+      {/* <Head>
         <title>To Do List</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -81,7 +91,7 @@ const Home: NextPage = () => {
                 
             </CardBody>
         </Card>
-</main>
+</main> */}
       
 
       

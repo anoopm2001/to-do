@@ -2,7 +2,10 @@ import "@material-tailwind/react/tailwind.css";
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head';
-function MyApp({ Component, pageProps }: AppProps) {
+import { SessionProvider } from "next-auth/react"
+function MyApp({
+  Component, pageProps: { session, ...pageProps }
+}) {
    return (
     <>
     
@@ -12,7 +15,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     rel="stylesheet"
 />
       </Head>
-     <Component {...pageProps} />
+     <SessionProvider session={session}>
+      <Component {...pageProps}/>
+    </SessionProvider>
      
   
     </>
@@ -20,3 +25,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp
+
+
+

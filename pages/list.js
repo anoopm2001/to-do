@@ -14,10 +14,12 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import DatePicker from 'react-datepicker'
 
+import { useSession, signIn, signOut } from 'next-auth/react'
 import 'react-datepicker/dist/react-datepicker.css'
 
 function list({ tasklist }) {
-  var x = new Date() - (new Date() - 1)
+  const { data: session } = useSession()
+
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(null)
   const [calendarClicked, setCalendarClicked] = useState(false)
